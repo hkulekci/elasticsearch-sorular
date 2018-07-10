@@ -2,7 +2,7 @@
 
  - Elasticsearch'de PDF veya TXT file indexlemek ve indexledigim PDF veya TXT dosyasinin icindeki herhangi bir kelime ile 
 arama yaptigimda listelemek istiyorum bu mümkün mü?
- > Evet Mümkün. Bunun için Apache Tika tabanlı `ingest attachment processor` eklentisini kullanabilirsiniz. Eklenti uyumlu binary dosyaları Elasticssearch üzerinde aranabilir olarak bir alan üzerinde tutulmasını sağlıyor. Daha sonra bu alan üzerinde analiz işlemleri yaparak arama sonuçlarında listelenmesini sağlayabilirsiniz.
+ > Evet Mümkün. Bunun için Apache Tika tabanlı [Ingest Attachment Processor](https://www.elastic.co/guide/en/elasticsearch/plugins/master/ingest-attachment.html) eklentisini kullanabilirsiniz. Eklenti uyumlu binary dosyaları Elasticssearch üzerinde aranabilir olarak bir alan üzerinde tutulmasını sağlıyor. Daha sonra bu alan üzerinde analiz işlemleri yaparak arama sonuçlarında listelenmesini sağlayabilirsiniz.
  -	Bir mysql veritabanını Elasticsearch’e nasıl atarız?
  > Mysql'den verileri taşımak için Bulk Insert methodunu kullanan bir script yazabilirsin. Bunun için herhangi bir dilde komut satırından deamon olarak çalışan bir sistem kurabilirsin. Eskiden bunun için plugin'ler vardı river diye ama yeni sürümlerde yok. Ayrıca Logstash'de odbc eklentisi ile bir mysql bağlantısı açıp sorgu ile belirli aralıklarla veri aktarımı da yapabiliyorsun.
  -	İndex’teki verilerden asıl veriye nasıl geçiş yaparız?
