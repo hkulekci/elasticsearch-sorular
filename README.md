@@ -49,3 +49,6 @@
 
 > Bir sistem NoSQL diğer RDMS. NoSQL veride structure olarak bir sınırın olmak zorunda değil. Diğerinde biraz zorunlu. Burada da böyle bir artı var. 
 
+#### `minimum_should_match` ne zaman ve nasıl kullanıyoruz? Nasıl Çalışıyor?
+
+> Konuya ilişkin bir [yazı yazmıştım.](https://medium.com/@kulekci/elasticsearchde-minimum-should-match-kullan%C4%B1m%C4%B1-4275b8f7f0b3) Bununla birlikte sorulan soru üzerine konu üzerine tekrar bir [gist](https://gist.github.com/hkulekci/2428d8938701af895ec07b7e0cf82b85) oluşturdum ve şunu söyleyebiirim. Siz bir arama yapacaksınız. Diyelim ki 10 kriter var. Bu kriterlerin hepsinin birden eşleşmesi o kadar da önemli değil en az 5 tanesi eşleşse bile sonuçlardan memnun olacağız. İşte tam bu noktada kullanıyoruz. En iyi örneğini de daha önce baktığınız ürünlere ya da dökümanlara benzer dökümanları göstermek için kullanabilirsiniz. Burada boost özelliği sayesinde çok güzel benzer dökümanlara eşleşebiliyorsunuz. Burada domain yapınızın buna uygun olması da önemli. Aksi durumda farklı bir kategorideki tamamen alakasız bir ürünü kullanıcıya öneriyor olabilirsiniz. 
