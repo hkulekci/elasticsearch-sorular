@@ -60,3 +60,7 @@
 #### Analyzer nedir? Ne işe yarar?
 
 > Ne kadarda güzel ne kadar da uzun bir soru. Kısa durduğuna bakmamak lazım altı dolu dolu bir soru. ES'i böyle güzel yapan şeylerden birisi de bu analyzer, tokenizer, filter konuları bence. Çok zevkli. Şimdi soruya geri dönelim ve kısa cevap ile başlayalım. "Analyzer aslında bir pipeline'dır ve arama terimlerini oluşturmaya yarar.". Şimdi gelelim uzun uzadıya bahsetmeye. Dedikya bir pipeline. Şimdi bu pipeline'a neler konuluyor da sonunda bizim token dediğimiz terimler ortaya çıkıyor. Pipeline şu şekilde bir yapıya sahip : Input => CharacterFilters => Tokenizer => TokenFilters => Output. Bu yapıda baktığımızda girdimiz bizim dökümanımız içerisindeki her bir alanda verdiğimiz `keyword`, `text`, vs. tüm alanlarımız. Burada verilen girdiler öncelikle varsa karakter filtrelerinden sonra varsa tokenizer'dan sonra `token filter`lardan geçiyor ve çıktı olarak bize bir vektör dönüyor. Bu vektörde artık token içeren bir yapı. Bu verileri ES index'e yerleştiriyor. Biz de bu analiz sürecinden geçirdiğimiz döküman alanlarında arama yaptığımızda bu analyzer tarafından oluşturulan token'lar üzerinde arama yapıyoruz ve sonuçları ona göre görüyoruz.
+
+#### Elasticsearch Süresi Dolmuş Lisans Problemi
+
+> Konuyla ilgili https://medium.com/@kulekci/elasticsearch-s%C3%BCresi-dolmu%C5%9F-lisans-problemi-bcc919b42a79 şu adresten detaylı bilgiye ulaşabilirsin.z Kabaca anlatmam gerekirse iki yöntem mevcut. Birisi xpack'i kullanmamak ve kapatmak. Diğeri ise lisans oluşturup yüklemek. 
