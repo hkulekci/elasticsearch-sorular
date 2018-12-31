@@ -64,3 +64,8 @@
 #### Elasticsearch Süresi Dolmuş Lisans Problemi
 
 > Konuyla ilgili https://medium.com/@kulekci/elasticsearch-s%C3%BCresi-dolmu%C5%9F-lisans-problemi-bcc919b42a79 şu adresten detaylı bilgiye ulaşabilirsin.z Kabaca anlatmam gerekirse iki yöntem mevcut. Birisi xpack'i kullanmamak ve kapatmak. Diğeri ise lisans oluşturup yüklemek. 
+
+#### Elasticsearch güncellemesi sonrası açılmadı. Ne yapamam gerekiyor?
+
+> Elasticsearch'ü 1.x den 2.x'e ya da 2.x den 5.x/6.x' gibi büyük sürümlerde güncelleme yaptıysanız https://github.com/elastic/elasticsearch-migration/ şu adresteki dökümanları bir incelemenizi tavsiye ederim. Daha minimal güncellemeler için yani 6.2'den 6.5'e gibi küçük sürümlerde güncelleme yaptıysanız ve sorun yaşıyorsanız: bu durumda ilk bakacağınız yer günlükler olmalıdır. Günlükleri iyice inceleyin. Daha sonrasında eğer Elasticsearch eklentisi kurduysanız eklentilerin uyumluluklarını kontrol edebilirsiniz. Bu uyumsuzluk durumunda günlük kayıtlarına şöyle bir satır düşecektir. `[2018-12-25T21:34:21,199][ERROR][o.e.b.Bootstrap] [node-1] Exception
+java.lang.IllegalArgumentException: Plugin [analysis-icu] was built for Elasticsearch version 6.5.1 but version 6.5.4 is running`. 
