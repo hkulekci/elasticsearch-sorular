@@ -69,3 +69,7 @@
 
 > Elasticsearch'ü 1.x den 2.x'e ya da 2.x den 5.x/6.x' gibi büyük sürümlerde güncelleme yaptıysanız https://github.com/elastic/elasticsearch-migration/ şu adresteki dökümanları bir incelemenizi tavsiye ederim. Daha minimal güncellemeler için yani 6.2'den 6.5'e gibi küçük sürümlerde güncelleme yaptıysanız ve sorun yaşıyorsanız: bu durumda ilk bakacağınız yer günlükler olmalıdır. Günlükleri iyice inceleyin. Daha sonrasında eğer Elasticsearch eklentisi kurduysanız eklentilerin uyumluluklarını kontrol edebilirsiniz. Bu uyumsuzluk durumunda günlük kayıtlarına şöyle bir satır düşecektir. `[2018-12-25T21:34:21,199][ERROR][o.e.b.Bootstrap] [node-1] Exception
 java.lang.IllegalArgumentException: Plugin [analysis-icu] was built for Elasticsearch version 6.5.1 but version 6.5.4 is running`. 
+
+#### `blocked by: [FORBIDDEN/12/index read-only / allow delete (api)]` hatası alıyorum. Ne yapabilirim?
+
+Elasticsearch'de [`cluster.routing.allocation.disk.watermark.flood_stage`](https://www.elastic.co/guide/en/elasticsearch/reference/6.2/disk-allocator.html) ayarı mevcuttur. Bu ayara göre disk doluluk oranı belirli bir yüzdelik dilimin üzerine çıkarsa index'ler yazmaya kısıtlanır. Bu durumu düzeltmek için şuradaki https://gist.github.com/hkulekci/686ab6a9d2583faf3ce6b8c528ea300f adımları uygulayabilirsiniz. 
