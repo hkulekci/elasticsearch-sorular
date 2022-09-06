@@ -72,4 +72,26 @@ java.lang.IllegalArgumentException: Plugin [analysis-icu] was built for Elastics
 
 #### `blocked by: [FORBIDDEN/12/index read-only / allow delete (api)]` hatası alıyorum. Ne yapabilirim?
 
-Elasticsearch'te [`cluster.routing.allocation.disk.watermark.flood_stage`](https://www.elastic.co/guide/en/elasticsearch/reference/6.2/disk-allocator.html) ayarı mevcuttur. Bu ayara göre disk doluluk oranı belirli bir yüzdelik dilimin üzerine çıkarsa index'ler yazmaya kısıtlanır. Bu durumu düzeltmek için şuradaki https://gist.github.com/hkulekci/686ab6a9d2583faf3ce6b8c528ea300f adımları uygulayabilirsiniz. 
+> Elasticsearch'te [`cluster.routing.allocation.disk.watermark.flood_stage`](https://www.elastic.co/guide/en/elasticsearch/reference/6.2/disk-allocator.html) ayarı mevcuttur. Bu ayara göre disk doluluk oranı belirli bir yüzdelik dilimin üzerine çıkarsa index'ler yazmaya kısıtlanır. Bu durumu düzeltmek için şuradaki https://gist.github.com/hkulekci/686ab6a9d2583faf3ce6b8c528ea300f adımları uygulayabilirsiniz. 
+
+#### Dökümanların eski versiyonlarına ulaşılabiliyor mu? 
+
+> Bildiğiniz üzere dökümanlar oluşturulduğunda ve güncellendiğinde dökümanın meta bilgisi olarak `version` bilgisi tutulmaktadır. her bir güncellemede bu `version` bilgiside artmaktadır. Ancak bir dökümanın eski haline erişmek mümkün değildir. Sadece bu dökümanın kaç kez değiştiğini gösteren bilgilere ulaşılabilinmektedir. 
+
+#### `_version` döküman üzerindeki her bir aksiyonu takip ederken `_seq_no` ne işe yarar? 
+
+> Her bir shard kendi içerisinde bir arama motorudur. `_version` alanı döküman seviyesinde bir sürüm bilgisi tutarken `_seq_no` ise shard seviyesinde bir kontrol bilgisidir. 
+
+#### Aynı id'li farklı dökümanlar kayıt edilebilir mi?
+
+> Evet bu mümkün. Ne işe yarar tam olarak örnekleyemem belki ama bunun için routing kullanabilirsiniz. Diyelim ki hali hazırda bir 3 id'li bir dökümanınız var ve bir routing ile yeni bir tane kayıt etmek istediniz.
+>
+```
+POST index-name/_doc/3?routing=1
+{"name": "sample", "company": "acme"}
+```
+>
+> Aşağıdaki iki istek farklı sonuç dönecektir. 
+>
+> `GET bbbb/_doc/3`
+> `GET bbbb/_doc/3?routing=1`
